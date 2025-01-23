@@ -4,6 +4,8 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
+from html_utils import create_notebook_with_html_output, inline_pandas_styles
+
 parser = argparse.ArgumentParser()
 parser.add_argument('json_file')
 parser.add_argument('output_suffix')
@@ -61,7 +63,11 @@ for reaction in reactions:
         records, columns=['Nuclide', 'E81/E80', 'E80/F32', 'E81/F32'], index='Nuclide')
 
     name = simple_name[reaction]
-    df.style \
+    html_str = df.style \
         .format(precision=3) \
         .background_gradient(axis=None, vmin=0.5, vmax=1.5, cmap='RdBu_r') \
-        .to_html(f'reports/{name}_{args.output_suffix}.html')
+        .to_html(None)
+
+    html_str = inline_pandas_styles(html_str)
+
+    create_notebook_with_html_output(html_str, f'reports/{name}_{args.output_suffix}.ipynb')

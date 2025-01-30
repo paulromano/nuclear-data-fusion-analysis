@@ -29,6 +29,7 @@ for lib_rates in rates.values():
 
 simple_name = {
     '(n,elastic)': 'elastic',
+    '(n,2n)': 'n2n',
     '(n,gamma)': 'capture',
     '(n,p)': 'np',
     '(n,d)': 'nd',

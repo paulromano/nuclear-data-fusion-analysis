@@ -42,6 +42,7 @@ model.export_to_model_xml()
 # Define reactions of interest
 reactions = {
     2,
+    16,
     102,
     103,
     104,
